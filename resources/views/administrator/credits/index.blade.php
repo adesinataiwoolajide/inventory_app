@@ -175,7 +175,7 @@
                                                                 No Credit </p>
                                                             @else
                                                             <p style="color: red"> &#8358;
-                                                                    <?php echo number_format($credits->credit_amount) ?> Pending </p> 
+                                                                    <?php echo number_format($credits->credit_amount) ?>  </p> 
                                                             @endif
                                                         </td>
                                                         <td>{{$credits->created_at}}</td>

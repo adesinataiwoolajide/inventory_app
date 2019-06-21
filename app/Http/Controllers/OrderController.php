@@ -66,24 +66,33 @@ class OrderController extends Controller
             
             ]);
         }else{
-            $inv = WareHouseManagement::where('user_id', auth()->user()->user_id)->first();
-            $ware_house_id = $inv->ware_house_id;
-            $invent =  InventoryStock::where([
-                'ware_house_id'=> $inv->ware_house_id]
-            )->orderBy('quantity', 'desc')->get();
-            return view('administrator.orders.create')
-            ->with([
-            "category" => $category,
-            "variant" => $variant,
-            "product" => $product,
-            "warehouse"=> $warehouse,
-            "supplier" => $supplier,
-            "inventory" =>$inventory,
-            
-            "distributor" => $distributor,
-            "invent" => $invent,
-            "inv" => $inv,
-        ]);
+            $inve = WareHouseManagement::where([
+                'user_id'=> auth()->user()->user_id,
+            ])->exists();
+            if($inve){
+                $inv = WareHouseManagement::where('user_id', auth()->user()->user_id)->first();
+                $ware_house_id = $inv->ware_house_id;
+                $invent =  InventoryStock::where([
+                    'ware_house_id'=> $inv->ware_house_id]
+                )->orderBy('quantity', 'desc')->get();
+                return view('administrator.orders.create')
+                ->with([
+                    "category" => $category,
+                    "variant" => $variant,
+                    "product" => $product,
+                    "warehouse"=> $warehouse,
+                    "supplier" => $supplier,
+                    "inventory" =>$inventory,
+                    
+                    "distributor" => $distributor,
+                    "invent" => $invent,
+                    "inv" => $inv,
+                ]);
+            }else{
+                return redirect()->back()->with([
+                    'error' => " You Do Not Belong To Any Ware House",
+                ]);
+            }
         }
         
         
@@ -164,25 +173,35 @@ class OrderController extends Controller
                             'error' => "Please Select The Add The Order Option",
                         ]);
                     }else{
-                        return redirect()->back()->with([
-                            'error' => "Please Fill The Quantity To Add The Order",
-                        ]);
+                        // return redirect()->back()->with([
+                        //     'error' => "Please Fill The Quantity To Add The Order",
+                        // ]);
                     }
                     
                 }
 
-                $dell = WareHouseManagement::where('user_id', Auth::user()->user_id)->first();
-                OrderDetails::create([
-                    'transaction_number' => $transaction_number,
-                    'distributor_id' => $request->input("distributor_id"),
-                    'invoice_number' => $invoice_number,
-                    "ware_house_id" => $dell->ware_house_id,
-                     "order_status" => 0, 
-                ]);
-                return redirect()->route("order.invoice")-> with([
-                    "success" => "You Have Added Order Successfully, The Order Transaction Number is
-                    $transaction_number",
-                ]);
+                $inve = WareHouseManagement::where([
+                    'user_id'=> auth()->user()->user_id,
+                ])->exists();
+                if($inve){
+
+                    $dell = WareHouseManagement::where('user_id', Auth::user()->user_id)->first();
+                    OrderDetails::create([
+                        'transaction_number' => $transaction_number,
+                        'distributor_id' => $request->input("distributor_id"),
+                        'invoice_number' => $invoice_number,
+                        "ware_house_id" => $dell->ware_house_id,
+                        "order_status" => 0, 
+                    ]);
+                    return redirect()->route("order.invoice")-> with([
+                        "success" => "You Have Added Order Successfully, The Order Transaction Number is
+                        $transaction_number",
+                    ]);
+                }else{
+                    return redirect()->back()->with([
+                        'error' => " You Do Not Belong To Any Ware House",
+                    ]);
+                }
             }else{
                 return redirect()->back()->with([
                     'error' => "Please FIll The Below Form  To Create An Order",
@@ -268,12 +287,21 @@ class OrderController extends Controller
                     "invoice" => $invoice,
                 ]);
             }else{
-                $inv = WareHouseManagement::where('user_id', auth()->user()->user_id)->first();
-                $invo = OrderDetails::where('ware_house_id', $inv->ware_house_id)->orderBy('details_id', 'desc')->get();
-                return view('administrator.orders.invoice')->with([
-                    "invo" => $invo,
-                    "inv" => $inv,
-                ]);
+                $inve = WareHouseManagement::where([
+                    'user_id'=> auth()->user()->user_id,
+                ])->exists();
+                if($inve){
+                    $inv = WareHouseManagement::where('user_id', auth()->user()->user_id)->first();
+                    $invo = OrderDetails::where('ware_house_id', $inv->ware_house_id)->orderBy('details_id', 'desc')->get();
+                    return view('administrator.orders.invoice')->with([
+                        "invo" => $invo,
+                        "inv" => $inv,
+                    ]);
+                }else{
+                    return redirect()->back()->with([
+                        'error' => " You Do Not Belong To Any Ware House",
+                    ]);
+                }
             }
            
         } else{
@@ -421,25 +449,34 @@ class OrderController extends Controller
             
             ]);
         }else{
-            $inv = WareHouseManagement::where('user_id', auth()->user()->user_id)->first();
-            $ware_house_id = $inv->ware_house_id;
-            
-            return view('administrator.orders.edit')
-            ->with([
-                "category" => $category,
-                "variant" => $variant,
-                "product" => $product,
-                "warehouse"=> $warehouse,
-                "supplier" => $supplier,
-                "inventory" =>$inventory,
-                "invent" => $invent,
-                "distributor" => $distributor,
-                "invent" => $invent,
-                "inv" => $inv,
+            $inve = WareHouseManagement::where([
+                'user_id'=> auth()->user()->user_id,
+            ])->exists();
+            if($inve){
+                $inv = WareHouseManagement::where('user_id', auth()->user()->user_id)->first();
+                $ware_house_id = $inv->ware_house_id;
+                
+                return view('administrator.orders.edit')
+                ->with([
+                    "category" => $category,
+                    "variant" => $variant,
+                    "product" => $product,
+                    "warehouse"=> $warehouse,
+                    "supplier" => $supplier,
+                    "inventory" =>$inventory,
+                    "invent" => $invent,
+                    "distributor" => $distributor,
+                    "invent" => $invent,
+                    "inv" => $inv,
 
-               "details" => $details,
-                //"orderDetails" => $orderDetails
-            ]);
+                "details" => $details,
+                    //"orderDetails" => $orderDetails
+                ]);
+            }else{
+                return redirect()->back()->with([
+                    'error' => " You Do Not Belong To Any Ware House",
+                ]);
+            }
         }
             
             
@@ -522,19 +559,28 @@ class OrderController extends Controller
                     
                 }
 
-                $dell = WareHouseManagement::where('user_id', Auth::user()->user_id)->first();
-               
-                DB::table('order_details')->where([
-                    "transaction_number" => $transaction_number,
-                ])->update([ 
-                    'distributor_id' => $request->input("distributor_id"),
-                    'invoice_number' => $request->input("invoice_number"),
-                    "ware_house_id" => $dell->ware_house_id,
-                    "order_status" => 0, 
-                ]); 
-                return redirect()->route("order.invoice")-> with([
-                    "success" => "You Have Updated The Order Successfully",
-                ]);
+                $inve = WareHouseManagement::where([
+                    'user_id'=> auth()->user()->user_id,
+                ])->exists();
+                if($inve){
+                    $dell = WareHouseManagement::where('user_id', Auth::user()->user_id)->first();
+                
+                    DB::table('order_details')->where([
+                        "transaction_number" => $transaction_number,
+                    ])->update([ 
+                        'distributor_id' => $request->input("distributor_id"),
+                        'invoice_number' => $request->input("invoice_number"),
+                        "ware_house_id" => $dell->ware_house_id,
+                        "order_status" => 0, 
+                    ]); 
+                    return redirect()->route("order.invoice")-> with([
+                        "success" => "You Have Updated The Order Successfully",
+                    ]);
+                }else{
+                    return redirect()->back()->with([
+                        'error' => " You Do Not Belong To Any Ware House",
+                    ]);
+                }
             }else{
                 return redirect()->back()->with([
                     'error' => "Please FIll The Below Form  To Update The Order",

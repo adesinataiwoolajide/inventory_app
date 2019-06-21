@@ -47,9 +47,11 @@ Route::group(["prefix" => "administrator", "middleware" => "verified"], function
         Route::get("/edit/{distributor_id}", "DistributorController@edit")->name("distributor.edit");   
         Route::get("/delete/{distributor_id}", "DistributorController@destroy")->name("distributor.delete");
         Route::post("/update/{distributor_id}", "DistributorController@update")->name("distributor.update");
-        Route::get("/payment/{distributor_id}", "DistributorController@payment")->name("distributor.payment"); 
-        Route::get("/outlet/{distributor_id}", "DistributorController@assignedoutlet")->name("distributor.outlet");     
-        Route::get("/order/{distributor_id}", "DistributorController@order")->name("distributor.order");
+        Route::get("/payments/{distributor_id}", "DistributorController@payment")->name("distributor.payment"); 
+        Route::get("/outlets/{distributor_id}", "DistributorController@assignedoutlet")->name("distributor.outlet");     
+        Route::get("/orders/{distributor_id}", "DistributorController@order")->name("distributor.order");
+        Route::get("/credit/{distributor_id}", "DistributorController@credit")->name("distributor.credit");     
+
         Route::get("/assign_outlet", "AssignOutletController@index")->name("assign.outlet.create");  
         Route::post("/save_assign_outlet", "AssignOutletController@store")->name("assign.outlet.save"); 
         Route::get("/delete/{assign_id}", "AssignOutletController@destroy")->name("assign.outlet.delete");
@@ -148,8 +150,9 @@ Route::group(["prefix" => "administrator", "middleware" => "verified"], function
         Route::get("/index", "SalesController@index")->name("sales.index");
         Route::get("/invoice", "SalesController@invoice")->name("sales.invoice");
         Route::get("/sales_report", "SalesController@report")->name("sales.report");
-        Route::get("/invoice_details/{transaction_number}", "OrderController@printinvoice")->
-         name("print.sales.invoice");
+        Route::get("/invoice_details/{transaction_number}", "OrderController@printinvoice")->name("print.sales.invoice");
+
+        Route::get("/monthly_sales", "SalesController@monthly_report")->name("monthly.report");
           
     });
 

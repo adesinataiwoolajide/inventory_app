@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2019 at 09:30 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.4
+-- Generation Time: Jun 21, 2019 at 10:18 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.2.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -42,66 +42,7 @@ CREATE TABLE `activity_logs` (
 --
 
 INSERT INTO `activity_logs` (`activity_id`, `user_id`, `operations`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '38', 'Added Raw Material To The Category List', '2019-05-18 07:14:22', '2019-05-18 07:14:22', NULL),
-(2, '38', 'Added Consumables To The Category List', '2019-05-18 07:14:34', '2019-05-18 07:14:34', NULL),
-(3, '38', 'You Have AddedCap seal (Small and Big)with Size NullTo raw material', '2019-05-18 07:15:07', '2019-05-18 07:15:07', NULL),
-(4, '38', 'You Have UpdatedCap Seal (small And Big)with Size 20 LitresTo raw material', '2019-05-18 07:15:45', '2019-05-18 07:15:45', NULL),
-(5, '38', 'You Have UpdatedCap Seal (small And Big)with Size NullTo raw material', '2019-05-18 07:19:24', '2019-05-18 07:19:24', NULL),
-(6, '38', 'Restored   Cap Seal (small And Big)  To The Production Material List', '2019-05-18 07:20:27', '2019-05-18 07:20:27', NULL),
-(7, '38', 'Added Test supplier To The Supplier List', '2019-05-18 07:28:50', '2019-05-18 07:28:50', NULL),
-(8, '38', 'Added Test supplier To The Supplier List', '2019-05-18 07:33:41', '2019-05-18 07:33:41', NULL),
-(9, '38', 'Changed The Supplier E-Mail From  test@gmail.com  Totest@gmail.com', '2019-05-18 07:35:09', '2019-05-18 07:35:09', NULL),
-(10, '38', 'Added Test Two To The Supplier List', '2019-05-18 07:48:50', '2019-05-18 07:48:50', NULL),
-(11, '35', 'Login Successfully', '2019-05-18 12:17:37', '2019-05-18 12:17:37', NULL),
-(12, '37', 'Login Successfully', '2019-05-18 12:19:36', '2019-05-18 12:19:36', NULL),
-(13, '37', 'Changed User Email From From administrator@gmail.com To administrator@gmail.com', '2019-05-18 12:21:35', '2019-05-18 12:21:35', NULL),
-(14, '38', 'Login Successfully', '2019-05-18 12:22:15', '2019-05-18 12:22:15', NULL),
-(15, '38', 'Added Test Supp To The Supplier List', '2019-05-18 12:23:51', '2019-05-18 12:23:51', NULL),
-(16, '38', 'Changed The Supplier E-Mail From  test@gmail.com  Totest@gmail.com', '2019-05-18 12:25:09', '2019-05-18 12:25:09', NULL),
-(17, '38', 'Restored   test@gmail.com  To The Supplier\'s List', '2019-05-18 12:27:53', '2019-05-18 12:27:53', NULL),
-(18, '38', 'Added testing@gmail.com To The Distributor List', '2019-05-18 12:29:49', '2019-05-18 12:29:49', NULL),
-(19, '38', 'Changed The Distributor E-Mail From  testing@gmail.com  Totest@gmail.com', '2019-05-18 12:30:34', '2019-05-18 12:30:34', NULL),
-(20, '38', 'Restored   test@gmail.com  To The Distributor\'s List', '2019-05-18 12:33:11', '2019-05-18 12:33:11', NULL),
-(21, '38', 'Restored   test@gmail.com  To The Distributor\'s List', '2019-05-18 12:35:22', '2019-05-18 12:35:22', NULL),
-(22, '38', 'Added Feed Well Makola Outlet For Distributor Test Distributor', '2019-05-18 12:36:54', '2019-05-18 12:36:54', NULL),
-(23, '38', 'Updated The Outlet Details ', '2019-05-18 12:37:52', '2019-05-18 12:37:52', NULL),
-(24, '38', 'Restored   Feed Well Bodija  To The Outlet List', '2019-05-18 12:38:31', '2019-05-18 12:38:31', NULL),
-(25, '38', 'Added Test Ware House To The Ware House List', '2019-05-18 12:47:59', '2019-05-18 12:47:59', NULL),
-(26, '38', 'Updated  Testing Ware House  Ware House Details', '2019-05-18 12:48:51', '2019-05-18 12:48:51', NULL),
-(27, '38', 'Restored   Testing Ware House  To The Ware House List List', '2019-05-18 12:49:49', '2019-05-18 12:49:49', NULL),
-(28, '38', 'Added emp@gmail.com To The Employee List', '2019-05-18 12:52:24', '2019-05-18 12:52:24', NULL),
-(29, '38', 'Changed The Employee E-Mail From  emp@gmail.com  Toemp@gmail.com', '2019-05-18 12:53:02', '2019-05-18 12:53:02', NULL),
-(30, '38', 'Deleted  Testing Employee  From The Employee List', '2019-05-18 12:54:51', '2019-05-18 12:54:51', NULL),
-(31, '38', 'Restored   emp@gmail.com  To The employee List', '2019-05-18 12:55:53', '2019-05-18 12:55:53', NULL),
-(32, '38', 'Deleted  Testing Employee  From The Employee List', '2019-05-18 12:56:36', '2019-05-18 12:56:36', NULL),
-(33, '38', 'Restored   emp@gmail.com  To The employee List', '2019-05-18 12:57:38', '2019-05-18 12:57:38', NULL),
-(34, '38', 'Deleted  Testing Employee  From The Employee List', '2019-05-18 12:57:56', '2019-05-18 12:57:56', NULL),
-(35, '38', 'Restored   emp@gmail.com  To The employee List', '2019-05-18 12:59:41', '2019-05-18 12:59:41', NULL),
-(36, '34', 'Login Successfully', '2019-05-18 13:14:12', '2019-05-18 13:14:12', NULL),
-(37, '34', 'Computed Salary For Testing Employee for the month of  May-2019', '2019-05-18 13:15:39', '2019-05-18 13:15:39', NULL),
-(38, '34', 'Updated Salary For Testing Employee for the month of  May-2019', '2019-05-18 13:17:18', '2019-05-18 13:17:18', NULL),
-(39, '34', 'Updated Salary For Testing Employee for the month of  May-2019', '2019-05-18 13:20:37', '2019-05-18 13:20:37', NULL),
-(40, '34', 'Updated Salary For Testing Employee for the month of  May-2019', '2019-05-18 13:22:14', '2019-05-18 13:22:14', NULL),
-(41, '35', 'Login Successfully', '2019-05-18 13:45:21', '2019-05-18 13:45:21', NULL),
-(42, '38', 'Login Successfully', '2019-05-18 13:47:03', '2019-05-18 13:47:03', NULL),
-(43, '38', 'Added  To The Supplier List', '2019-05-18 14:02:13', '2019-05-18 14:02:13', NULL),
-(44, '38', 'You Have AddedGYwith Size 20 LitresTo raw material', '2019-05-18 14:08:00', '2019-05-18 14:08:00', NULL),
-(45, '35', 'Login Successfully', '2019-05-18 14:14:13', '2019-05-18 14:14:13', NULL),
-(46, '37', 'Login Successfully', '2019-05-18 14:15:09', '2019-05-18 14:15:09', NULL),
-(47, '38', 'Login Successfully', '2019-05-18 14:17:07', '2019-05-18 14:17:07', NULL),
-(48, '38', 'Updated  Testing Ware House  Ware House Details', '2019-05-18 14:17:55', '2019-05-18 14:17:55', NULL),
-(49, '35', 'Login Successfully', '2019-05-18 14:18:16', '2019-05-18 14:18:16', NULL),
-(50, '35', 'Added Order ACC400E347B4  For Distributor Test Distributor', '2019-05-18 14:21:45', '2019-05-18 14:21:45', NULL),
-(51, '38', 'Login Successfully', '2019-05-18 14:25:28', '2019-05-18 14:25:28', NULL),
-(52, '35', 'Login Successfully', '2019-05-18 14:29:47', '2019-05-18 14:29:47', NULL),
-(53, '35', 'Added Order 9DA998B89AED  For Distributor Test Distributor', '2019-05-18 14:31:01', '2019-05-18 14:31:01', NULL),
-(54, '35', 'Added Order FF7C156678EC  For Distributor Test Distributor', '2019-05-18 14:31:54', '2019-05-18 14:31:54', NULL),
-(55, '35', 'Added Order B6503DE0FFCA  For Distributor Test Distributor', '2019-05-18 14:34:47', '2019-05-18 14:34:47', NULL),
-(56, '35', 'Added Order 48046AFEF5F1  For Distributor Test Distributor', '2019-05-18 14:39:40', '2019-05-18 14:39:40', NULL),
-(57, '38', 'Login Successfully', '2019-05-18 14:47:03', '2019-05-18 14:47:03', NULL),
-(58, '38', 'Added  To The Supplier List', '2019-05-18 14:48:07', '2019-05-18 14:48:07', NULL),
-(59, '38', 'Added  To The Supplier List', '2019-05-18 14:48:55', '2019-05-18 14:48:55', NULL),
-(60, '35', 'Login Successfully', '2019-05-18 14:49:24', '2019-05-18 14:49:24', NULL);
+(1, '38', 'Login Successfully', '2019-06-21 07:15:39', '2019-06-21 07:15:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -117,18 +58,6 @@ CREATE TABLE `assign_outlets` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` text COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `assign_outlets`
---
-
-INSERT INTO `assign_outlets` (`assign_id`, `outlet_id`, `distributor_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 6, '2019-04-13 20:47:18', '2019-04-13 20:47:18', NULL),
-(2, 2, 6, '2019-04-13 20:47:49', '2019-04-13 20:47:49', NULL),
-(3, 2, 5, '2019-04-13 20:54:27', '2019-04-13 20:54:27', NULL),
-(4, 4, 3, '2019-04-13 21:00:31', '2019-04-13 21:00:31', NULL),
-(5, 4, 3, '2019-04-15 12:00:02', '2019-04-15 12:00:02', NULL),
-(6, 4, 5, '2019-04-24 22:48:20', '2019-04-24 22:48:20', NULL);
 
 -- --------------------------------------------------------
 
@@ -208,13 +137,6 @@ CREATE TABLE `distributors` (
   `deleted_at` text COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `distributors`
---
-
-INSERT INTO `distributors` (`distributor_id`, `name`, `phone_one`, `phone_two`, `email`, `address`, `credit_limit`, `credit_reduction_per_month`, `updated_at`, `created_at`, `deleted_at`) VALUES
-(1, 'test distributor', '09093383777', 'Null', 'test@gmail.com', 'New Estate', 10000, '1000', '2019-05-18 12:35:22', '2019-05-18 12:29:49', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -234,13 +156,6 @@ CREATE TABLE `employees` (
   `deleted_at` text COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `employees`
---
-
-INSERT INTO `employees` (`employee_id`, `full_name`, `address`, `phone_number`, `contract_type`, `email`, `ware_house_id`, `updated_at`, `created_at`, `deleted_at`) VALUES
-(1, 'Testing Employee', 'Lagos Ibadan', '09087768666', 'Temporary Staff', 'emp@gmail.com', 1, '2019-05-18 12:59:41', '2019-05-18 12:52:24', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -259,15 +174,6 @@ CREATE TABLE `inventory_stocks` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `inventory_stocks`
---
-
-INSERT INTO `inventory_stocks` (`stock_id`, `product_name`, `supplier_id`, `ware_house_id`, `variant_id`, `category_id`, `quantity`, `deleted_at`, `updated_at`, `created_at`) VALUES
-(1, '1lt honey', 1, 1, 1, 1, 90, NULL, '2019-05-18 14:02:13', '2019-05-18 14:02:13'),
-(2, 'casio calculator', 1, 1, 1, 1, 10, NULL, '2019-05-18 14:48:07', '2019-05-18 14:48:07'),
-(3, '2 litres', 1, 1, 2, 1, 80, NULL, '2019-05-18 14:48:55', '2019-05-18 14:48:55');
 
 -- --------------------------------------------------------
 
@@ -749,15 +655,6 @@ CREATE TABLE `orders` (
   `deleted_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`order_id`, `stock_id`, `quantity`, `transaction_number`, `unit_amount`, `total_amount`, `distributor_id`, `updated_at`, `created_at`, `deleted_at`) VALUES
-(1, 1, 2, 'ACC400E347B4', '20000', '40000', 1, '2019-05-18 14:21:45', '2019-05-18 14:21:45', NULL),
-(2, 1, 5, 'B6503DE0FFCA', '20000', '100000', 1, '2019-05-18 14:34:47', '2019-05-18 14:34:47', NULL),
-(3, 1, 5, '48046AFEF5F1', '20000', '100000', 1, '2019-05-18 14:39:40', '2019-05-18 14:39:40', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -776,15 +673,6 @@ CREATE TABLE `order_details` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `order_details`
---
-
-INSERT INTO `order_details` (`details_id`, `transaction_number`, `distributor_id`, `invoice_number`, `ware_house_id`, `order_status`, `updated_at`, `created_at`, `deleted_at`) VALUES
-(1, 'ACC400E347B4', '1', '39A624', 1, 0, '2019-05-18 14:21:45', '2019-05-18 14:21:45', NULL),
-(2, 'B6503DE0FFCA', '1', 'A372CB', 1, 0, '2019-05-18 14:34:47', '2019-05-18 14:34:47', NULL),
-(4, '48046AFEF5F1', '1', '4AEB61', 1, 0, '2019-05-18 14:39:40', '2019-05-18 14:39:40', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -799,13 +687,6 @@ CREATE TABLE `outlets` (
   `created_at` timestamp NULL DEFAULT NULL,
   `deleted_at` text COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `outlets`
---
-
-INSERT INTO `outlets` (`outlet_id`, `outlet_name`, `distributor_id`, `updated_at`, `created_at`, `deleted_at`) VALUES
-(1, 'Feed Well Bodija', 1, '2019-05-18 12:38:31', '2019-05-18 12:36:54', NULL);
 
 -- --------------------------------------------------------
 
@@ -972,15 +853,6 @@ CREATE TABLE `products` (
   `deleted_at` text COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`product_id`, `product_name`, `product_slug`, `supplier_id`, `variant_id`, `amount`, `quantity`, `ware_house_id`, `category_id`, `updated_at`, `created_at`, `deleted_at`) VALUES
-(1, '1lt honey', '1lt-honey-442', 1, 1, 20000, 2, 1, 1, '2019-05-18 14:02:14', '2019-05-18 14:02:14', NULL),
-(2, 'casio calculator', 'casio-calculator-1981', 1, 1, 4000, 10, 1, 1, '2019-05-18 14:48:07', '2019-05-18 14:48:07', NULL),
-(3, '2 litres', '2-litres-1178', 1, 2, 9000, 80, 1, 1, '2019-05-18 14:48:55', '2019-05-18 14:48:55', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -996,14 +868,6 @@ CREATE TABLE `product_variants` (
   `created_at` timestamp NULL DEFAULT NULL,
   `deleted_at` text COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `product_variants`
---
-
-INSERT INTO `product_variants` (`variant_id`, `variant_name`, `category_id`, `variant_size`, `updated_at`, `created_at`, `deleted_at`) VALUES
-(1, 'cap seal (small and big)', 1, 'null', '2019-05-18 07:20:26', '2019-05-18 07:15:07', NULL),
-(2, 'gy', 1, '20 litres', '2019-05-18 14:08:00', '2019-05-18 14:08:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -1242,13 +1106,6 @@ CREATE TABLE `salaries` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `salaries`
---
-
-INSERT INTO `salaries` (`salary_id`, `employee_id`, `basic_salary`, `over_time`, `rate`, `hours`, `total`, `month`, `weekly`, `monthly`, `ware_house_id`, `updated_at`, `created_at`, `deleted_at`) VALUES
-(1, 1, 500, 0, 10, 10, 85000, 'May-2019', '4', 4, 1, '2019-05-18 13:17:18', '2019-05-18 13:15:39', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -1283,14 +1140,6 @@ CREATE TABLE `suppliers` (
   `deleted_at` text COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `suppliers`
---
-
-INSERT INTO `suppliers` (`supplier_id`, `name`, `phone_one`, `phone_two`, `email`, `address`, `city`, `state`, `country`, `updated_at`, `created_at`, `deleted_at`) VALUES
-(1, 'test supplier one', '09087654343', 'Null', 'test@gmail.com', 'Ikere Ekiti, Ekiti', 'Ado Ekiti', 'Edo', 'Nigeria', '2019-05-18 12:27:53', '2019-05-18 07:33:41', NULL),
-(2, 'test supp', '09094842322', '', 'hope@gmail.cm', 'ThegalijnfgihsijDFHZIJLHF', 'Mushin', 'Bayelsa', 'Nigeria', '2019-05-18 12:28:24', '2019-05-18 12:23:51', '2019-05-18 13:28:24');
-
 -- --------------------------------------------------------
 
 --
@@ -1319,15 +1168,9 @@ INSERT INTO `users` (`user_id`, `name`, `email`, `role`, `password`, `status`, `
 (34, 'New Accountants', 'accountant@gmail.com', 'Accountant', '$2y$10$/G1SWEaKZ0rOb7Le06CTKeKWQfWGUdw/ew6eoYeRAnRRHdykkkEnu', 1, '2019-05-13 12:03:11', '2019-04-29 06:18:28', NULL, '2019-04-01 23:00:00'),
 (35, 'Editor', 'editor@gmail.com', '\"Editor\"', '$2y$10$MfG93yAgiBzoBh.VNI4ubeK6U98yy1jLlaaDiTs4cislHjix0oswy', 1, '2019-04-29 08:37:13', '2019-04-29 08:37:13', NULL, '2019-04-06 23:00:00'),
 (36, 'Receptionist', 'receptionist@gmail.com', '\"Receptionist\"', '$2y$10$6n3ymtijFM1mNoVfrJhGneV3LLxGbtkPlRDI9DFopfE3tSC60Itve', 1, '2019-04-29 08:37:54', '2019-04-29 08:37:54', NULL, '2019-04-04 23:00:00'),
-(37, 'Admin User', 'admin@gmail.com', 'Admin', '$2y$10$0U2R9dp42Hk5KEpPPEimCONTOD3YoWT5Pr2cyRhp1qZB3Icrb3zT6', 1, '2019-05-13 10:30:08', '2019-04-29 08:38:33', NULL, '2019-04-01 23:00:00'),
+(37, 'Admin User', 'admin@gmail.com', 'Admin', '$2y$10$0U2R9dp42Hk5KEpPPEimCONTOD3YoWT5Pr2cyRhp1qZB3Icrb3zT6', 1, '2019-05-13 10:30:08', '2019-04-29 08:38:33', NULL, '2019-06-09 23:00:00'),
 (38, 'Super Administrator', 'administrator@gmail.com', 'Administrator', '$2y$10$WcTxYYwS4yDMBk5olyOW..jfQFtMO8vJQICbev2XswW7wOPWV84e2', 1, '2019-05-18 12:21:35', '2019-04-29 08:39:12', NULL, '2019-04-06 23:00:00'),
-(39, 'Adesina Taiwo Olajide', 'tolajide75@gmail.com', '\"Administrator\"', '$2y$10$hQtFh7iNW7GoSrCvDkKVnOTLRwvaoLFOi8ynYAyPynqqai4UkIfX2', 1, '2019-04-30 16:39:57', '2019-04-30 16:30:17', NULL, '2019-04-30 16:39:57'),
-(40, 'Test supplier', 'sup@gmail.com', '\"Supplier\"', '$2y$10$cwT4U.6InN.5ZMDCTIiRDeiLpxaCaTNi5YvudCsF68wuUzRG4x8be', 1, '2019-05-09 06:08:20', '2019-05-07 11:00:43', '2019-05-09 07:08:20', NULL),
-(45, 'Adeyemi Adeola', 'adeola@gmail.com', 'Staff', '$2y$10$igBHTf6m0O2aKotAjXtpbO.LlHL02Y533yBL68TQfNSYaqjVLgQgm', 1, '2019-05-11 10:33:09', '2019-05-11 10:33:09', NULL, NULL),
-(46, 'Akinola Dayosola', 'dayosola@gmail.com', 'Staff', '$2y$10$a0277ZXBEPFoYmntts4SfOgFRZobOfKeREym2yKm0PYXoXPSeg5om', 1, '2019-05-11 10:36:36', '2019-05-11 10:36:36', NULL, NULL),
-(47, 'Goke Emmanuel', 'ema@gmail.com', 'Receptionist', '$2y$10$2nQRtG2TWHnAB3Wbrxe0C.qByksaHNQi3TEhA3nrOTogBa3LVIqH.', 1, '2019-05-11 10:37:36', '2019-05-11 10:37:36', NULL, NULL),
-(48, 'Kolade Jole', 'kola@gmail.com', 'Accountant', '$2y$10$07NWlfpkLlMOG6jDDMEho.DjViXH7jd7O4xH0KJfViwNdtW/OOqyS', 1, '2019-05-11 11:08:02', '2019-05-11 10:56:34', NULL, '2019-05-11 11:08:02'),
-(49, 'Testing Employee', 'emp@gmail.com', 'Receptionist', '$2y$10$Hq6kVWDQ5LBdB5BO0pDwHuES/hONfb7D2r5F4v5VhxmGIig.mcLge', 1, '2019-05-18 12:59:41', '2019-05-18 12:52:24', NULL, NULL);
+(39, 'Adesina Taiwo Olajide', 'tolajide75@gmail.com', '\"Administrator\"', '$2y$10$hQtFh7iNW7GoSrCvDkKVnOTLRwvaoLFOi8ynYAyPynqqai4UkIfX2', 1, '2019-04-30 16:39:57', '2019-04-30 16:30:17', NULL, '2019-04-30 16:39:57');
 
 -- --------------------------------------------------------
 
@@ -1361,13 +1204,6 @@ CREATE TABLE `ware_house_managements` (
   `created_at` timestamp NULL DEFAULT NULL,
   `deleted_at` text COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `ware_house_managements`
---
-
-INSERT INTO `ware_house_managements` (`ware_house_id`, `name`, `address`, `city`, `state`, `country`, `start_date`, `user_id`, `updated_at`, `created_at`, `deleted_at`) VALUES
-(1, 'testing ware house', 'Kuto Abeokuta', 'Abekuta, Ogun', 'Ogun', 'Nigeria', '2019-09-14', 35, '2019-05-18 14:17:55', '2019-05-18 12:47:59', NULL);
 
 --
 -- Indexes for dumped tables
@@ -1555,13 +1391,13 @@ ALTER TABLE `ware_house_managements`
 -- AUTO_INCREMENT for table `activity_logs`
 --
 ALTER TABLE `activity_logs`
-  MODIFY `activity_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `activity_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `assign_outlets`
 --
 ALTER TABLE `assign_outlets`
-  MODIFY `assign_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `assign_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1585,19 +1421,19 @@ ALTER TABLE `credit_payments`
 -- AUTO_INCREMENT for table `distributors`
 --
 ALTER TABLE `distributors`
-  MODIFY `distributor_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `distributor_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `employee_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `employee_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `inventory_stocks`
 --
 ALTER TABLE `inventory_stocks`
-  MODIFY `stock_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `stock_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1609,19 +1445,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `order_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `details_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `details_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `outlets`
 --
 ALTER TABLE `outlets`
-  MODIFY `outlet_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `outlet_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payments`
@@ -1639,13 +1475,13 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `product_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `product_variants`
 --
 ALTER TABLE `product_variants`
-  MODIFY `variant_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `variant_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -1657,7 +1493,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `salaries`
 --
 ALTER TABLE `salaries`
-  MODIFY `salary_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `salary_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sales`
@@ -1669,13 +1505,13 @@ ALTER TABLE `sales`
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `supplier_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `supplier_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `user_roles`
@@ -1687,7 +1523,7 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT for table `ware_house_managements`
 --
 ALTER TABLE `ware_house_managements`
-  MODIFY `ware_house_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ware_house_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

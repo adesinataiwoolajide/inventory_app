@@ -22,7 +22,7 @@
 		          	<div class="card">
                         @if(auth()->user()->hasRole('Administrator') OR(
 							auth()->user()->hasRole('Admin')))
-                            @if(count($prods) ==0)
+                            @if(count($product) ==0)
                                 <div class="card-header" align="center" style="color: red">
                                     <i class="fa fa-table"></i> No Product Waswas Supplied {{$sup->name}}
                                 </div>
@@ -63,7 +63,7 @@
                                             </tfoot>
                                             <tbody>
                                                 <?php $number =1; ?>
-                                                @foreach($prods as $products)
+                                                @foreach($product as $products)
                                                     <tr>
                                                         
                                                         <td>{{$products->product_name}}</td> 

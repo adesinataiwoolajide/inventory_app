@@ -35,20 +35,28 @@ class SalaryController extends Controller
                 "employee" => $employee,
             ]);
         }else{
-            
-            $inv = WareHouseManagement::where([
+            $inve = WareHouseManagement::where([
                 'user_id'=> auth()->user()->user_id,
-            ])->first();
-            $ware_house_id = $inv->ware_house_id;
-            $sal = Salaries::where('ware_house_id', $ware_house_id)->orderBy("salary_id", "desc")->get();
-            $emp =  Employee::where([
-                'ware_house_id'=> $inv->ware_house_id]
-            )->orderBy('full_name', 'asc')->get();
-            return view('administrator.salaries.index')->with([
-                "sal" => $sal,
-                "emp" => $emp,
-                "inv" => $inv,
-            ]);
+            ])->exists();
+            if($inve){
+                $inv = WareHouseManagement::where([
+                    'user_id'=> auth()->user()->user_id,
+                ])->first();
+                $ware_house_id = $inv->ware_house_id;
+                $sal = Salaries::where('ware_house_id', $ware_house_id)->orderBy("salary_id", "desc")->get();
+                $emp =  Employee::where([
+                    'ware_house_id'=> $inv->ware_house_id]
+                )->orderBy('full_name', 'asc')->get();
+                return view('administrator.salaries.index')->with([
+                    "sal" => $sal,
+                    "emp" => $emp,
+                    "inv" => $inv,
+                ]);
+            }else{
+                return redirect()->back()->with([
+                    'error' => " You Do Not Belong To Any Ware House",
+                ]);
+            }
         }
     }
 
@@ -212,22 +220,31 @@ class SalaryController extends Controller
                 "salar" => $salar,
             ]);
         }else{
-            $inv = WareHouseManagement::where([
+            $inve = WareHouseManagement::where([
                 'user_id'=> auth()->user()->user_id,
-            ])->first();
-            $ware_house_id = $inv->ware_house_id;
-            $sal = Salaries::where('ware_house_id', $ware_house_id)->orderBy("salary_id", "desc")->get();
-            
-            
-            $emp =  Employee::where([
-                'ware_house_id'=> $inv->ware_house_id]
-            )->orderBy('full_name', 'asc')->get();
-            return view('administrator.salaries.edit')->with([
-                "sal" => $sal,
-                "emp" => $emp,
-                "inv" => $inv,
-                "salar" => $salar,
-            ]);
+            ])->exists();
+            if($inve){
+                $inv = WareHouseManagement::where([
+                    'user_id'=> auth()->user()->user_id,
+                ])->first();
+                $ware_house_id = $inv->ware_house_id;
+                $sal = Salaries::where('ware_house_id', $ware_house_id)->orderBy("salary_id", "desc")->get();
+                
+                
+                $emp =  Employee::where([
+                    'ware_house_id'=> $inv->ware_house_id]
+                )->orderBy('full_name', 'asc')->get();
+                return view('administrator.salaries.edit')->with([
+                    "sal" => $sal,
+                    "emp" => $emp,
+                    "inv" => $inv,
+                    "salar" => $salar,
+                ]);
+            }else{
+                return redirect()->back()->with([
+                    'error' => " You Do Not Belong To Any Ware House",
+                ]);
+            }
         }
         
     }

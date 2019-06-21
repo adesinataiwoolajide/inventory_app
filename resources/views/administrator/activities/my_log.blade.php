@@ -19,7 +19,9 @@
 			</div>
    			
 			 <div class="row">
+
 		    	<div class="col-lg-12">
+					@include('partials._message')
 		          	<div class="card">
 		          		@if(count($log) ==0)
                             <div class="card-header" align="center" style="color: red">

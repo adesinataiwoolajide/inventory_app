@@ -35,7 +35,7 @@ class AdministratorController extends Controller
         $warehouse = WareHouseManagement::all();
         $invoice = OrderDetails::all(); 
         $credit = CreditManagement::all();
-        $log = ActivityLog::all();
+        $log = ActivityLog::where('user_id', auth()->user()->user_id)->get();
         $payment = Payments::all();
 
         auth()->user()->revokePermissionTo([

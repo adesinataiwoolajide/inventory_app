@@ -91,4 +91,11 @@
         ])->get();
     }
 
+    function monthly()
+    {
+        return \DB::table('payments')->where([
+            "month" => $month
+        ])->get();
+    }
+
 ?>

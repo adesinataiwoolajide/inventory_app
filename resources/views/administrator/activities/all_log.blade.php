@@ -19,6 +19,7 @@
 			</div>
    			
 			 <div class="row">
+				@include('partials._message')
 		    	<div class="col-lg-12">
 		          	<div class="card">
 		          		@if(count($log) ==0)

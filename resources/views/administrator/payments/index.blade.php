@@ -115,12 +115,12 @@
                         @else
                             @if(count($pay) ==0)
                                 <div class="card-header" align="center" style="color: red">
-                                    <i class="fa fa-table"></i> The List of Order Payments in {{$inv->name}} Ware House is Empty
+                                    <i class="fa fa-table"></i> The List of Order Payments in {{$inv->name}} is Empty
                                 </div>
 
                             @else
                                 <div class="card-header"><i class="fa fa-table"></i> 
-                                    List of Saved Order Payments in {{$inv->name}} Ware House
+                                    List of Saved Order Payments in {{$inv->name}} 
                                 </div>
                                 
                                 <div class="card-body">

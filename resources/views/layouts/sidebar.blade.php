@@ -6,8 +6,8 @@
         }elseif(auth()->user()->hasRole('Editor') OR  auth()->user()->hasRole('Receptionist')){ ?>
             <div id="sidebar-wrapper" class="bg-theme bg-theme12" data-simplebar="" data-simplebar-auto-hide="true"><?php 
         }else{ ?> 
-                <div id="sidebar-wrapper" class="bg-theme bg-theme2" data-simplebar="" data-simplebar-auto-hide="true"><?php 
-            }?>
+            <div id="sidebar-wrapper" class="bg-theme bg-theme2" data-simplebar="" data-simplebar-auto-hide="true"><?php 
+        }?>
             <div class="brand-logo">
                 <a href="{{route('administrator.dashboard')}}">
                     <h5 class="logo-text">Inventory Application</h5>
@@ -22,18 +22,39 @@
                         <h6 class="side-user-name"><?php $name = Auth::user()->name; ?> {{ $name }}</h6>
                     </div>
                 </div>
-                <div id="user-dropdown" class="collapse">
-                    <ul class="user-setting-menu">
-                        <li><a href="{{route('user.profile')}}"><i class="icon-user"></i>  My Profile</a></li>
-                        <li><a href="{{route('change.pasword')}}"><i class="icon-lock"></i> Change Password</a></li>
-                        <li>
-                            <a href="{{route('log.user')}}" class="waves-effect">
-                                <i class="fa fa-cloud text-success"></i> <span>My Activity Log</span>
-                            </a>
-                        </li>	
-                        <li><a href="{{ route('admin.logout') }}"><i class="icon-power"></i> Logout</a></li>
-                    </ul>
-                </div>
+                @if(( Auth::user()->email_verified_at) != ""))
+                    <div id="user-dropdown" class="collapse">
+                        <ul class="user-setting-menu">
+                            <li><a href="{{route('user.profile')}}"><i class="icon-user text-success"></i>  My Profile</a></li>
+                            <li><a href="{{route('change.pasword')}}"><i class="icon-lock text-success"></i> Change Password</a></li>
+                            <li>
+                                <a href="{{route('log.user')}}" class="waves-effect">
+                                    <i class="fa fa-cloud text-success"></i> <span>My Activity Log</span>
+                                </a>
+                            </li>	
+                            @if ((auth()->user()->hasRole('Administrator')) OR
+                                (auth()->user()->hasRole('Admin')))
+
+                                <li>
+                                    <a href="{{route('log.index')}}" class="waves-effect">
+                                        <i class="fa fa-cloud text-success"></i> <span>All Activities Log</span>
+                                        
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{{route('user.create')}}" class="waves-effect">
+                                        <i class="fa fa-cloud text-success"></i> <span>User Mgt</span>
+                                        
+                                    </a>
+                                </li>
+
+                            @endif
+                            <li><a href="{{ route('admin.logout') }}"><i class="icon-power text-danger"></i> Logout</a></li>
+                        </ul>
+                    </div>
+
+                @endif
             </div>
             <ul class="sidebar-menu do-nicescrol">
                 <li class="sidebar-header">MAIN NAVIGATION</li>
@@ -145,17 +166,7 @@
                     @endif
                     @if ((auth()->user()->hasRole('Administrator')) OR
                         (auth()->user()->hasRole('Admin')))
-                        {{-- <li>
-                            <a href="javaScript:void();" class="waves-effect">
-                                <i class="zmdi zmdi-card-travel"></i>
-                                <span>Outlet Mgt</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="sidebar-submenu">
-                                <li><a href="{{route('outlet.create')}}"><i class="zmdi zmdi-long-arrow-right"></i>Add Outlet</a></li>
-                                <li><a href="{{route('assign.outlet.create')}}"><i class="zmdi zmdi-long-arrow-right"></i> Assign Outlet</a></li>
-                            </ul>
-                        </li> --}}
+                        
                         <li>
                             <a href="{{route('outlet.create')}}" class="waves-effect">
                                 <i class="fa fa-shopping-cart text-success"></i> <span>Outlet Mgt</span>
@@ -172,31 +183,9 @@
                                 </small>
                             </a>
                         </li>
-                        <li>
-                            <a href="{{route('user.create')}}" class="waves-effect">
-                                <i class="fa fa-user-circle-o text-success"></i> <span>User Mgt</span>
-                                <small class="badge float-right badge-danger"><i class="zmdi zmdi-long-arrow-right"></i></small>
-                            </a>
-                        </li>
                         
-                        <li>
-                            <a href="{{route('log.index')}}" class="waves-effect">
-                                <i class="fa fa-cloud text-success"></i> <span>All Activities Log</span>
-                                <small class="badge float-right badge-danger">
-                                    <i class="zmdi zmdi-long-arrow-right"></i>
-                                </small>
-                            </a>
-                        </li>
                     @endif
-                    
-                    <li>
-                        <a href="{{route('log.user')}}" class="waves-effect">
-                            <i class="fa fa-cloud text-success"></i> <span>My Activity Log</span>
-                            <small class="badge float-right badge-danger"><i class="zmdi zmdi-long-arrow-right"></i></small>
-                        </a>
-                    </li>	
-                    
-                       
+                   
                 @endif
                 
             </ul>
@@ -219,7 +208,7 @@
            
                     <li class="nav-item">
                         
-                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="">
+                        <a href="{{route('admin.logout')}}">
                             <span class="user-profile"><img src="{{asset('styling/assets/inventory.jpg')}}" class="img-circle" alt="user avatar"></span>
                         </a>
                         

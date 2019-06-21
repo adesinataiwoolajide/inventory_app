@@ -31,15 +31,24 @@ class PaymentController extends Controller
                 "payment" => $payment,
             ]);
         }else{
-            $inv = WareHouseManagement::where('user_id', auth()->user()->user_id)->first();
-            $ware_house_id = $inv->ware_house_id;
-            $pay =  Payments::where([
-                'ware_house_id'=> $inv->ware_house_id]
-            )->orderBy('payment_id', 'desc')->get();
-            return view('administrator.payments.index')->with([
-                "pay" => $pay,
-                "inv" => $inv,
-            ]);
+            $inve = WareHouseManagement::where([
+                'user_id'=> auth()->user()->user_id,
+            ])->exists();
+            if($inve){
+                $inv = WareHouseManagement::where('user_id', auth()->user()->user_id)->first();
+                $ware_house_id = $inv->ware_house_id;
+                $pay =  Payments::where([
+                    'ware_house_id'=> $inv->ware_house_id]
+                )->orderBy('payment_id', 'desc')->get();
+                return view('administrator.payments.index')->with([
+                    "pay" => $pay,
+                    "inv" => $inv,
+                ]);
+            }else{
+                return redirect()->back()->with([
+                    'error' => " You Do Not Belong To Any Ware House",
+                ]);
+            }
         }
         
     }
@@ -95,15 +104,34 @@ class PaymentController extends Controller
                 
             ]);
         }else{
-            $inv = WareHouseManagement::where('user_id', auth()->user()->user_id)->first();
-            $ware_house_id = $inv->ware_house_id;
-            $invoi =  OrderDetails::where(
-                ['order_status'=> 0,
-                'ware_house_id' => $ware_house_id, 
-            ])->orderBy('details_id', 'desc')->get();
-            $invoice =  OrderDetails::where(
-                ['order_status'=> 0,
-            ])->orderBy('details_id', 'desc')->get();
+            $inve = WareHouseManagement::where([
+                'user_id'=> auth()->user()->user_id,
+            ])->exists();
+            if($inve){
+                $inv = WareHouseManagement::where('user_id', auth()->user()->user_id)->first();
+                $ware_house_id = $inv->ware_house_id;
+                $invoi =  OrderDetails::where(
+                    ['order_status'=> 0,
+                    'ware_house_id' => $ware_house_id, 
+                ])->orderBy('details_id', 'desc')->get();
+                $invoice =  OrderDetails::where(
+                    ['order_status'=> 0,
+                ])->orderBy('details_id', 'desc')->get();
+                $payment =Payments::where('ware_house_id', $ware_house_id)->orderBy('payment_id', 'desc')->get();
+
+                return view('administrator.payments.create')->with([
+                    "invoice" => $invoice,
+                    "payment" => $payment,
+                    "invoi" => $invoi,
+                    "inv" => $inv,
+                    
+                    
+                ]);
+            }else{
+                return redirect()->back()->with([
+                    'error' => " You Do Not Belong To Any Ware House",
+                ]);
+            }
         }
     }
 

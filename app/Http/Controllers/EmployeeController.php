@@ -34,17 +34,26 @@ class EmployeeController extends Controller
                 "warehouse" => $warehouse,
             ]);
         }else{
-            $inv = WareHouseManagement::where([
+            $inve = WareHouseManagement::where([
                 'user_id'=> auth()->user()->user_id,
-            ])->first();
-            $ware_house_id = $inv->ware_house_id;
-            $emp =  Employee::where([
-                'ware_house_id'=> $inv->ware_house_id]
-            )->orderBy('full_name', 'asc')->get();
-            return view('administrator.employee.create')->with([
-                "emp" => $emp,
-                "inv" => $inv,
-            ]);
+            ])->exists();
+            if($inve){
+                $inv = WareHouseManagement::where([
+                    'user_id'=> auth()->user()->user_id,
+                ])->first();
+                $ware_house_id = $inv->ware_house_id;
+                $emp =  Employee::where([
+                    'ware_house_id'=> $inv->ware_house_id]
+                )->orderBy('full_name', 'asc')->get();
+                return view('administrator.employee.create')->with([
+                    "emp" => $emp,
+                    "inv" => $inv,
+                ]);
+            }else{
+                return redirect()->back()->with([
+                    'error' => " You Do Not Belong To Any Ware House",
+                ]);
+            }
         }
     }
 
@@ -199,35 +208,44 @@ class EmployeeController extends Controller
                     "warehouse" => $warehouse,
                 ]);
             }else{
-                $inv = WareHouseManagement::where([
+                $inve = WareHouseManagement::where([
                     'user_id'=> auth()->user()->user_id,
-                ])->first();
-                $ware_house_id = $inv->ware_house_id;
-                $employ = $this->model->show($employee_id); 
-                $details = Employee::where([
-                    "employee_id" => $employee_id, 
-                ])->first();
-                $emp =  Employee::where([
-                    'ware_house_id'=> $inv->ware_house_id]
-                )->orderBy('full_name', 'asc')->get();
-                $email = $details->email;
-                $user = User::where([
-                    "email" => $email, 
-                ])->first();
-                $user_id = $user->user_id;
-                $usd = $user = User::find($user_id);
-                $roles = Role::pluck('name','name')->all();
-                $userRole = $usd->roles->pluck('name','name')->all();
-                return view('administrator.employee.edit')->with([
-                    "emp" => $emp,
-                    "inv" => $inv,
-                    
-                    "employ" =>$employ,
-                    "user" => $user,
-                    "roles"=>$roles,
-                    "userRole" => $userRole,
-                    "usd" => $usd,
-                ]);
+                ])->exists();
+                if($inve){
+                    $inv = WareHouseManagement::where([
+                        'user_id'=> auth()->user()->user_id,
+                    ])->first();
+                    $ware_house_id = $inv->ware_house_id;
+                    $employ = $this->model->show($employee_id); 
+                    $details = Employee::where([
+                        "employee_id" => $employee_id, 
+                    ])->first();
+                    $emp =  Employee::where([
+                        'ware_house_id'=> $inv->ware_house_id]
+                    )->orderBy('full_name', 'asc')->get();
+                    $email = $details->email;
+                    $user = User::where([
+                        "email" => $email, 
+                    ])->first();
+                    $user_id = $user->user_id;
+                    $usd = $user = User::find($user_id);
+                    $roles = Role::pluck('name','name')->all();
+                    $userRole = $usd->roles->pluck('name','name')->all();
+                    return view('administrator.employee.edit')->with([
+                        "emp" => $emp,
+                        "inv" => $inv,
+                        
+                        "employ" =>$employ,
+                        "user" => $user,
+                        "roles"=>$roles,
+                        "userRole" => $userRole,
+                        "usd" => $usd,
+                    ]);
+                }else{
+                    return redirect()->back()->with([
+                        'error' => " You Do Not Belong To Any Ware House",
+                    ]);
+                }
             }
             
         } else{

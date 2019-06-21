@@ -16,7 +16,7 @@
                             auth()->user()->hasRole('Admin')))
                             <li class="breadcrumb-item"><a href="{{route('distributor.restore')}}">Restore Deleted 
                             Distributors</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('assign.outlet.create')}}">Assign An Outlet</a></li>
+                            
 				    	    <li class="breadcrumb-item"><a href="{{route('outlet.create')}}">Add Outlet</a></li>
                         @endif
                         
@@ -63,9 +63,9 @@
                                             <select class="form-control form-control-rounded" name="distributor_id" required>
                                                 <option value=""> -- Select The Distributor -- </option>
                                                 <option value=""> </option>
-                                                @foreach($distributor as $disDetails)
-                                                    <option value="{{$disDetails->distributor_id}}">{{$disDetails->name}} </option>
-                                                @endforeach
+                                               
+                                                <option value="{{$distributor->distributor_id}}">{{$distributor->name}} </option>
+                                               
                                             <select>
                                             <span style="color: red">** This Field is Required **</span>
                                             @if ($errors->has('distributor_id'))
@@ -95,73 +95,68 @@
 			 <div class="row">
 		    	<div class="col-lg-12">
 		          	<div class="card">
-		          		@if(count($assign) ==0)
-                            <div class="card-header" align="center" style="color: red">
-                                <i class="fa fa-table"></i> No Outlet is Found
-			            	</div>
-
-			            @else
-			            	<div class="card-header"><i class="fa fa-table"></i> List of {{$distributor->name}} Assigned Outlets </div>
-		            		<div class="card-body">
-		              			<div class="table-responsive">
-                                    <table id="default-datatable" class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                
-                                                <th>Outlet Name</th>
-                                                <th> Distributor Name </th>
-                                                <th> Time Added </th>
-                                                @if(auth()->user()->hasRole('Administrator') OR(
-                                                    auth()->user()->hasRole('Admin')))
-                                                    <th>Operations</th>
-                                                @endif                                                
-                                            </tr>
-                                        </thead>
-                                        <tbody><?php
-                                            $y=1; ?>
-                                            @foreach($assign as $assign_outleta)
-                                                <tr>
-                                                    <td><?php echo ucwords($assign_outleta->outlet->outlet_name) ?>
-                                                        {{-- @foreach(OutletDetails($assign_outleta->outlet_id) as $outlet_details)
-                                                            {{$outlet_details->outlet_name}}
-                                                        @endforeach --}}
-                                                        </td> 
-                                                    <td>
-                                                        <?php echo ucwords($assign_outleta->distributor->name) ?>
-                                                        {{--  @foreach(ProductDistributor($assign_outleta->distributor_id) as $distributor_details)
-                                                            {{$distributor_details->name}}
-                                                        @endforeach  --}}
-                                                    </td> 
-                                                    <td>
-                                                        {{$assign_outleta->created_at}}
-                                                    </td>
-                                                
-                                                    @if(auth()->user()->hasRole('Administrator') OR(
-                                                        auth()->user()->hasRole('Admin')))
-                                                            {{-- @can('assign-delete') --}}
-                                                        <td>
-                                                            <a href="{{route('assign.outlet.delete', $assign_outleta->assign_id)}}" 
-                                                            class="btn btn-danger" onclick="return(confirmToDelete());">
-                                                            <i class="fa fa-trash-o"></i>
-                                                            Delete</a>
-                                                            <a href="" class="btn btn-primary" onclick="return(confirmToDelete());">
-                                                                <i class="fa fa-pencil"></i> 
-                                                            Edit</a>  
-                                                        </td>
-                                                        
-                                                    @endif
-                                                    
-                                                    
-                                                </tr><?php $y++; ?>
-                                            @endforeach
+		          		
+                        <div class="card-header"><i class="fa fa-table"></i> List of {{$distributor->name}} Assigned Outlets </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="default-datatable" class="table table-bordered">
+                                    <thead>
+                                        <tr>
                                             
+                                            <th>Outlet Name</th>
+                                            <th> Distributor Name </th>
+                                            <th> Time Added </th>
+                                            {{-- @if(auth()->user()->hasRole('Administrator') OR(
+                                                auth()->user()->hasRole('Admin')))
+                                                <th>Operations</th>
+                                            @endif                                                 --}}
+                                        </tr>
+                                    </thead>
+                                    <tbody><?php
+                                        $y=1; ?>
+                                        @foreach($assign as $assign_outleta)
+                                            <tr>
+                                                <td>
+                                                    @foreach(OutletDetails($assign_outleta->outlet_id) as $outlet_details)
+                                                        {{$outlet_details->outlet_name}}
+                                                    @endforeach
+                                                    </td> 
+                                                <td>
+                                                    <?php echo ucwords($assign_outleta->distributor->name) ?>
+                                                    {{--  @foreach(ProductDistributor($assign_outleta->distributor_id) as $distributor_details)
+                                                        {{$distributor_details->name}}
+                                                    @endforeach  --}}
+                                                </td> 
+                                                <td>
+                                                    {{$assign_outleta->created_at}}
+                                                </td>
+                                            
+                                                {{-- @if(auth()->user()->hasRole('Administrator') OR(
+                                                    auth()->user()->hasRole('Admin')))
+                                                        
+                                                    <td>
+                                                        <a href="{{route('assign.outlet.delete', $assign_outleta->outlet_id)}}" 
+                                                        class="" onclick="return(confirmToDelete());">
+                                                        <i class="fa fa-trash-o"></i>
+                                                        Delete</a>
+                                                        <a href="" class="" onclick="return(confirmToEdit());">
+                                                            <i class="fa fa-pencil"></i> 
+                                                        Edit</a>  
+                                                    </td>
+                                                    
+                                                @endif
+                                                 --}}
+                                                
+                                            </tr><?php $y++; ?>
+                                        @endforeach
                                         
-                                        </tbody>
                                     
-		              				</table>
-		              			</div>
-		              		</div>
-		             	@endif
+                                    </tbody>
+                                
+                                </table>
+                            </div>
+                        </div>
+		             	
 	              	</div>
 	            </div>
 	        </div>

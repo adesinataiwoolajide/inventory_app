@@ -25,26 +25,66 @@ class SalesController extends Controller
                 
             ]);
         }else{
-            $inv = WareHouseManagement::where('user_id', auth()->user()->user_id)->first();
-            $ware_house_id = $inv->ware_house_id;
-            $pay =  Payments::where([
-                'ware_house_id'=> $inv->ware_house_id]
-            )->orderBy('payment_id', 'desc')->get();
-            return view('administrator.sales.index')->with([
-               // "payment" => $payment,
-                "pay" => $pay,
-                "inv" => $inv,
-                //"invoice" => $invoice,
-            ]);
+            $inve = WareHouseManagement::where([
+                'user_id'=> auth()->user()->user_id,
+            ])->exists();
+            if($inve){
+                $inv = WareHouseManagement::where('user_id', auth()->user()->user_id)->first();
+                $ware_house_id = $inv->ware_house_id;
+                $pay =  Payments::where([
+                    'ware_house_id'=> $inv->ware_house_id]
+                )->orderBy('payment_id', 'desc')->get();
+                return view('administrator.sales.index')->with([
+                // "payment" => $payment,
+                    "pay" => $pay,
+                    "inv" => $inv,
+                    //"invoice" => $invoice,
+                ]);
+            }else{
+                return redirect()->back()->with([
+                    'error' => " You Do Not Belong To Any Ware House",
+                ]);
+            }
         }
        
-        //$payment =Payments::orderBy('payment_id', 'desc')->get();
-        return view('administrator.sales.index')->with([
-            "payment" => $payment,
-            "pay" => $pay,
-            "inv" => $inv,
-            //"invoice" => $invoice,
-        ]);
+        
+    }
+
+    public function monthly_report()
+    {
+        $month = date('Y-m');
+        if(auth()->user()->hasRole('Administrator') OR(
+            auth()->user()->hasRole('Admin'))){
+            
+            $payment =  Payments::orderBy('payment_id', 'desc')->get();
+            return view('administrator.sales.monthly_sales')->with([
+                "payment" => $payment,
+                
+            ]);
+        }else{
+            $inve = WareHouseManagement::where([
+                'user_id'=> auth()->user()->user_id,
+            ])->exists();
+            if($inve){
+                $inv = WareHouseManagement::where('user_id', auth()->user()->user_id)->first();
+                $ware_house_id = $inv->ware_house_id;
+                $pay =  Payments::where([
+                    'ware_house_id'=> $inv->ware_house_id]
+                )->orderBy('payment_id', 'desc')->get();
+                return view('administrator.sales.monthly_sales')->with([
+                // "payment" => $payment,
+                    "pay" => $pay,
+                    "inv" => $inv,
+                    //"invoice" => $invoice,
+                ]);
+            }else{
+                return redirect()->back()->with([
+                    'error' => " You Do Not Belong To Any Ware House",
+                ]);
+            }
+        }
+       
+        
     }
 
     public function report()

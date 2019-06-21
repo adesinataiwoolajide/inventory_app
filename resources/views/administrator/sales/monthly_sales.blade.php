@@ -7,11 +7,10 @@
 		        <div class="col-sm-9">
 				    <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('administrator.dashboard')}}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('sales.index')}}">{{date('M, ')}}  Sales Report</a></li>
                         <li class="breadcrumb-item"><a href="{{route('sales.index')}}">View Sales</a></li>
                         <li class="breadcrumb-item"><a href="{{route('sales.invoice')}}">Sales Invice</a></li>
-                        <li class="breadcrumb-item"><a href="{{route('sales.index')}}">{{date('M')}} Sales Report</a></li>
-                        {{-- <li class="breadcrumb-item"><a href="{{route('sales.report')}}">Sales Report</a></li> --}}
-                        <li class="breadcrumb-item active" aria-current="page">List of Sales</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{date('M, Y')}}  Sales Report</li>
                         
 			         </ol>
 			   	</div>
@@ -22,15 +21,15 @@
                     @include('partials._message')
 		          	<div class="card">
                         @if(auth()->user()->hasRole('Administrator') OR(
-                                auth()->user()->hasRole('Admin')))
+                            auth()->user()->hasRole('Admin')))
                             @if(count($payment) ==0)
                                 <div class="card-header" align="center" style="color: red">
-                                    <i class="fa fa-table"></i> The List is Empty in All Ware House
+                                    <i class="fa fa-table"></i> The List is Empty
                                 </div>
 
                             @else
                                 <div class="card-header"><i class="fa fa-table"></i> 
-                                    List of Sales in All Ware House
+                                    List of Saved Sales Report for {{date('M,Y')}} In All Ware House
                                 </div>
                                 
                                 <div class="card-body">
@@ -39,7 +38,7 @@
                                         <table id="default-datatable" class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>Opt</th>
+                                                    <th> S/N</th>
                                                     <th> Transaction ID</th>
                                                     <th> Distributor </th>
                                                     <th> Ware House </th>
@@ -52,7 +51,7 @@
 
                                             <tfoot>
                                                 <tr>
-                                                    <th> Opt</th>
+                                                    <th> S/N</th>
                                                     <th> Distributor </th>
                                                     <th> Ware House </th>
                                                     <th> Transaction ID</th>
@@ -64,23 +63,29 @@
                                             </tfoot>
                                             <tbody>
                                                 <?php $number =1; ?>
-                                                @foreach($payment as $orders)
+                                                @foreach($payment as $orders) @php
+                                                    
+                                                    $date = $orders->created_at;
+                                                    $split = explode("-", $date);
+                                                    $month = $split[1] . ",". $split[2]; @endphp
                                                     <tr>
-                                                        <td>
-                                                            {{-- @can('payment-delete')
-                                                                <a href="{{route('payment.delete', $orders->order->transaction_number)}}" 
+                                                        <td>{{$number}}
+                                                            @if(auth()->user()->hasRole('Administrator') OR 
+                                                                (auth()->user()->hasRole('Admin')))
+                                                                {{-- <a href="{{route('payment.delete', $orders->order->transaction_number)}}" 
                                                                 onclick="return(confirmToDelete());" class="btn btn-danger">
-                                                                <i class="fa fa-trash-o"></i></a>
-                                                            @endcan
-                                                            
+                                                                <i class="fa fa-trash-o"></i></a> --}}
+                                                            @endif
                                                             @can('payment-edit')
-                                                                <a href="{{route('payment.edit', $orders->order->transaction_number)}}" 
-                                                                onclick="return(confirmToEdit());" class="btn btn-success">
-                                                                <i class="fa fa-pencil"></i></a>
-                                                            @endcan --}}
-                                                            <a href="{{route('payment.details', $orders->order->transaction_number)}}" 
-                                                                class="btn btn-primary">
-                                                                <i class="fa fa-list"></i></a>  
+                                                                {{-- <a href="{{route('payment.edit', $orders->order->transaction_number)}}" 
+                                                                    onclick="return(confirmToEdit());" class="btn btn-success">
+                                                                    <i class="fa fa-pencil"></i>
+                                                                </a> --}}
+                                                                <a href="{{route('payment.details', $orders->order->transaction_number)}}" 
+                                                                    class="btn btn-primary">
+                                                                    <i class="fa fa-list"></i>
+                                                                </a>  
+                                                            @endcan
                                                         </td>
                                                         
                                                         <td>{{$orders->order->transaction_number}}</td>
@@ -109,15 +114,15 @@
                                 </div> 
                                     
                             @endif
-                        @else 
+                        @else
                             @if(count($pay) ==0)
                                 <div class="card-header" align="center" style="color: red">
-                                    <i class="fa fa-table"></i> The List is Empty in {{$inv->name}}
+                                    <i class="fa fa-table"></i> The List of Order Payments in {{$inv->name}} is Empty
                                 </div>
 
                             @else
                                 <div class="card-header"><i class="fa fa-table"></i> 
-                                    List of Sales
+                                    List of Saved Sales Report for {{date('M,Y')}}  in {{$inv->name}} 
                                 </div>
                                 
                                 <div class="card-body">
@@ -126,7 +131,7 @@
                                         <table id="default-datatable" class="table table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th> Opt</th>
+                                                    <th> S/N</th>
                                                     <th> Transaction ID</th>
                                                     <th> Distributor </th>
                                                     <th> Ware House </th>
@@ -139,7 +144,7 @@
 
                                             <tfoot>
                                                 <tr>
-                                                    <th> Opt</th>
+                                                    <th> S/N</th>
                                                     <th> Distributor </th>
                                                     <th> Ware House </th>
                                                     <th> Transaction ID</th>
@@ -153,21 +158,22 @@
                                                 <?php $number =1; ?>
                                                 @foreach($pay as $orders)
                                                     <tr>
-                                                        <td>
-                                                            {{-- @can('payment-delete')
+                                                        <td>{{$number}}
+                                                            @if(auth()->user()->hasRole('Administrator') OR (auth()->user()->hasRole('Admin')))
                                                                 <a href="{{route('payment.delete', $orders->order->transaction_number)}}" 
                                                                 onclick="return(confirmToDelete());" class="btn btn-danger">
                                                                 <i class="fa fa-trash-o"></i></a>
-                                                            @endcan
-                                                            
+                                                            @endif
                                                             @can('payment-edit')
                                                                 <a href="{{route('payment.edit', $orders->order->transaction_number)}}" 
-                                                                onclick="return(confirmToEdit());" class="btn btn-success">
-                                                                <i class="fa fa-pencil"></i></a>
-                                                            @endcan --}}
-                                                            <a href="{{route('payment.details', $orders->order->transaction_number)}}" 
-                                                                class="btn btn-primary">
-                                                                <i class="fa fa-list"></i></a>  
+                                                                    onclick="return(confirmToEdit());" class="btn btn-success">
+                                                                    <i class="fa fa-pencil"></i>
+                                                                </a>
+                                                                <a href="{{route('payment.details', $orders->order->transaction_number)}}" 
+                                                                    class="btn btn-primary">
+                                                                    <i class="fa fa-list"></i>
+                                                                </a>  
+                                                            @endcan
                                                         </td>
                                                         
                                                         <td>{{$orders->order->transaction_number}}</td>
@@ -195,9 +201,9 @@
                                     
                                 </div> 
                                     
-                            @endif   
+                            @endif
                         @endif
-                    </div>
+	              	</div>
 	            </div>
 	        </div>
 	     </div>

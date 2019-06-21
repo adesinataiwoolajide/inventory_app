@@ -50,22 +50,32 @@ class ProductController extends Controller
             ]);
         }else{
             
-            $inv = WareHouseManagement::where([
+            $inve = WareHouseManagement::where([
                 'user_id'=> auth()->user()->user_id,
-            ])->first();
-            $ware_house_id = $inv->ware_house_id;
-            $prod =  Products::where([
-                'ware_house_id'=> $inv->ware_house_id]
-            )->orderBy('product_id', 'desc')->get();
-            return view('administrator.products.create')
-            ->with([
-                "category" => $category,
-                "variant" => $variant,
-                "warehouse"=> $warehouse,
-                "supplier" => $supplier,
-                "inv" => $inv,
-                "prod" => $prod,
-            ]);
+            ])->exists();
+            if($inve){
+                $inv = WareHouseManagement::where([
+                    'user_id'=> auth()->user()->user_id,
+                ])->exists();
+                $ware_house_id = $inv->ware_house_id;
+                $prod =  Products::where([
+                    'ware_house_id'=> $inv->ware_house_id]
+                )->orderBy('product_id', 'desc')->get();
+                return view('administrator.products.create')
+                ->with([
+                    "category" => $category,
+                    "variant" => $variant,
+                    "warehouse"=> $warehouse,
+                    "supplier" => $supplier,
+                    "inv" => $inv,
+                    "prod" => $prod,
+                ]);
+            }else{
+                return redirect()->back()->with([
+                    'error' => " You Do Not Belong To Any Ware House",
+                ]);
+            }
+            
         }
        
         

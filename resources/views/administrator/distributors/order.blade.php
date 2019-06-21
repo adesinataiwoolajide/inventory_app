@@ -4,18 +4,25 @@
     <div class="content-wrapper">
    		<div class="container-fluid">
    			<div class="row pt-2 pb-2">
-		        <div class="col-sm-9">
+		        <div class="col-sm-12">
 				    <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('administrator.dashboard')}}">Home</a></li>
-                        @foreach($dist_order as $pay)
-                            <li class="breadcrumb-item"><a href="{{route('distributor.order', $pay->distributor_id)}}">
-                                Distributor Orders</a>
-                            </li>
-                            <li class="breadcrumb-item"><a href="{{route('distributor.payment', $pay->distributor_id)}}">
-                                Distributor Payments</a>
-                            </li>
-                        @endforeach
-                        <li class="breadcrumb-item"><a href="{{route('distributor.create')}}">Add Distributor</a></li>
+                        
+                        <li class="breadcrumb-item"><a href="{{route('distributor.order', $distribut->distributor_id)}}">
+                            Distributor Orders</a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="{{route('distributor.payment', $distribut->distributor_id)}}">
+                            Distributor Payments</a>
+                        </li>
+
+                        @if(auth()->user()->hasRole('Administrator') OR(
+                            auth()->user()->hasRole('Admin')))
+                             <li class="breadcrumb-item"><a href="{{route('distributor.create')}}">Add Distributor</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('distributor.restore')}}">Restore Deleted 
+                            Distributors</a></li>
+                        @endif
+                        
+                       
                         <li class="breadcrumb-item active" aria-current="page">List of Distributor Order</li>
 			         </ol>
 			   	</div>

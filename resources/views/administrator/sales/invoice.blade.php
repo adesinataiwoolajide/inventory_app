@@ -12,6 +12,7 @@
                         @endcan
                         @can('order-create')
                         <li class="breadcrumb-item"><a href="{{route('sales.index')}}">View Sales</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('sales.index')}}">{{date('M')}} Sales Report</a></li>
                         {{-- <li class="breadcrumb-item"><a href="{{route('sales.report')}}">View Sales Report</a></li> --}}
                         @endcan
                         {{-- <li class="breadcrumb-item"><a href="{{route('order.index')}}">View Orders</a></li> --}}

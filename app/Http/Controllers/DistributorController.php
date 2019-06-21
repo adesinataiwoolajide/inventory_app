@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\{Distributors, User, ActivityLog, Payments, OrderDetails, AssignOutlet, Outlets};
+use App\{Distributors, User, ActivityLog, Payments, OrderDetails, AssignOutlet, 
+    Outlets, CreditManagement};
 use App\Repositories\DistributorRepository;
 use DB;
 use Illuminate\Support\Facades\Auth;
@@ -77,20 +78,22 @@ class DistributorController extends Controller
         ])->get();
         $outlet= Outlets::orderBy('outlet_name', 'asc')->get();
 
-        $distributor= Distributors::where([
-            "distributor_id" => $distributor_id
-        ])->first();
-
-
-        if(count($assign) == 0){
-            return redirect()->back()->with([
-                'error' => " No Outlet is Found For $distributor->name ", 
-            ]);
-        }else{
+        $dist= Distributors::orderBy("name", 'asc')->get(); 
+        
+        if(count($assign) > 0){
+            $distributor= Distributors::where([
+                "distributor_id" => $distributor_id
+            ])->first(); 
             return view('administrator.distributors.outlets')->with([
                 'assign' => $assign,
                 'distributor' => $distributor,
                 "outlet" => $outlet,
+                "dist" => $dist,
+            ]);
+            
+        }else{
+            return redirect()->back()->with([
+                'error' => " No Outlet is Found For $distributor->name ", 
             ]);
         }
         
@@ -101,6 +104,9 @@ class DistributorController extends Controller
         $dist_order= OrderDetails::where([
             "distributor_id" => $distributor_id
         ])->get();
+        $distribut= Distributors::where([
+            "distributor_id" => $distributor_id
+        ])->first(); 
 
         if(count($dist_order) == 0){
             return redirect()->back()->with([
@@ -109,6 +115,29 @@ class DistributorController extends Controller
         }else{
             return view('administrator.distributors.order')->with([
                 'dist_order' => $dist_order,
+                'distribut' => $distribut,
+            ]);
+        }
+        
+    }
+
+    public function credit($distributor_id)
+    {
+        $credit= CreditManagement::where([
+            "distributor_id" => $distributor_id
+        ])->get();
+        $distributor= Distributors::where([
+            "distributor_id" => $distributor_id
+        ])->first(); 
+
+        if(count($credit) == 0){
+            return redirect()->back()->with([
+                'error' => " No Credit is Found For The Selected Distributor ", 
+            ]);
+        }else{
+            return view('administrator.distributors.credit')->with([
+                'credit' => $credit,
+                'distributor' => $distributor,
             ]);
         }
         

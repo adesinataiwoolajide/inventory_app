@@ -184,7 +184,7 @@ class SupplierController extends Controller
                     return view('administrator.supplier.products')->with([
                         'product' => $product,
                         'sup' => $sup,
-                        'inv' => $inv,
+                        
                         'prods' => $prods,
                     ]);
 
@@ -196,7 +196,7 @@ class SupplierController extends Controller
                         'supplier_id' => $supplier_id ]
                     )->orderBy('product_id', 'desc')->get();
                     return view('administrator.supplier.products')->with([
-                        'product' => $product,
+                        'prod' => $prod,
                         'sup' => $sup,
                         'inv' => $inv,
                         'prod' => $prod,

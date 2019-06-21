@@ -31,16 +31,25 @@ class CreditManagementsController extends Controller
                
             ]);
         }else{
-            $inv = WareHouseManagement::where('user_id', auth()->user()->user_id)->first();
-            $ware_house_id = $inv->ware_house_id;
-            $cre =  CreditManagement::where([
-                'ware_house_id' => $ware_house_id, 
-            ])->orderBy('credit_id', 'desc')->get();
-            return view('administrator.credits.index')->with([
-                
-                "cre" => $cre,
-                "inv" => $inv,
-            ]);
+            $inve = WareHouseManagement::where([
+                'user_id'=> auth()->user()->user_id,
+            ])->exists();
+            if($inve){
+                $inv = WareHouseManagement::where('user_id', auth()->user()->user_id)->first();
+                $ware_house_id = $inv->ware_house_id;
+                $cre =  CreditManagement::where([
+                    'ware_house_id' => $ware_house_id, 
+                ])->orderBy('credit_id', 'desc')->get();
+                return view('administrator.credits.index')->with([
+                    
+                    "cre" => $cre,
+                    "inv" => $inv,
+                ]);
+            }else{
+                return redirect()->back()->with([
+                    'error' => " You Do Not Belong To Any Ware House",
+                ]);
+            }
         }
         
     }
@@ -54,20 +63,29 @@ class CreditManagementsController extends Controller
                 "credit" => $credit,
             ]);
         }else{
-            $inv = WareHouseManagement::where([
+            $inve = WareHouseManagement::where([
                 'user_id'=> auth()->user()->user_id,
-            ])->first();
-            $ware_house_id = $inv->ware_house_id;
-            $cre =  CreditManagement::where([
-                'ware_house_id' => $ware_house_id, 
-                'paid_status' => 1,
-            ])->orderBy('credit_id', 'desc')->get();
-            $credit =CreditManagement::where('paid_status', 1)->orderBy('credit_id', 'desc')->get();
-            return view('administrator.credits.paid')->with([
-               
-                "cre" => $cre,
-                "inv" => $inv,
-            ]);
+            ])->exists();
+            if($inve){
+                $inv = WareHouseManagement::where([
+                    'user_id'=> auth()->user()->user_id,
+                ])->first();
+                $ware_house_id = $inv->ware_house_id;
+                $cre =  CreditManagement::where([
+                    'ware_house_id' => $ware_house_id, 
+                    'paid_status' => 1,
+                ])->orderBy('credit_id', 'desc')->get();
+                $credit =CreditManagement::where('paid_status', 1)->orderBy('credit_id', 'desc')->get();
+                return view('administrator.credits.paid')->with([
+                
+                    "cre" => $cre,
+                    "inv" => $inv,
+                ]);
+            }else{
+                return redirect()->back()->with([
+                    'error' => " You Do Not Belong To Any Ware House",
+                ]);
+            }
         }
         
     }
@@ -81,20 +99,29 @@ class CreditManagementsController extends Controller
                 "credit" => $credit,
             ]);
         }else{
-            $inv = WareHouseManagement::where([
+            $inve = WareHouseManagement::where([
                 'user_id'=> auth()->user()->user_id,
-            ])->first();
-            $ware_house_id = $inv->ware_house_id;
-            $cre =  CreditManagement::where([
-                'ware_house_id' => $ware_house_id, 
-                'paid_status' => 1,
-            ])->orderBy('credit_id', 'desc')->get();
-            $credit =CreditManagement::where('paid_status', 0)->orderBy('credit_id', 'desc')->get();
-            return view('administrator.credits.unpaid')->with([
-               
-                "cre" => $cre,
-                "inv" => $inv,
-            ]);
+            ])->exists();
+            if($inve){
+                $inv = WareHouseManagement::where([
+                    'user_id'=> auth()->user()->user_id,
+                ])->first();
+                $ware_house_id = $inv->ware_house_id;
+                $cre =  CreditManagement::where([
+                    'ware_house_id' => $ware_house_id, 
+                    'paid_status' => 1,
+                ])->orderBy('credit_id', 'desc')->get();
+                $credit =CreditManagement::where('paid_status', 0)->orderBy('credit_id', 'desc')->get();
+                return view('administrator.credits.unpaid')->with([
+                
+                    "cre" => $cre,
+                    "inv" => $inv,
+                ]);
+            }else{
+                return redirect()->back()->with([
+                    'error' => " You Do Not Belong To Any Ware House",
+                ]);
+            }
         }
     }
 

@@ -228,11 +228,15 @@
                                                         </a>
                                                         @if(auth()->user()->hasRole('Administrator') OR (auth()->user()->hasRole('Admin'))
                                                             OR (auth()->user()->hasRole('Accountant')))        
-                                                            <a href="{{route('distributor.payment', $distributors->distributor_id)}}"><i class="fa fa-money"></i>
+                                                            <a href="{{route('distributor.credit', $distributors->distributor_id)}}"><i class="fa fa-money"></i>
                                                                 
                                                             </a>
-                                                            
-                                                            <a href="{{route('distributor.payment', $distributors->distributor_id)}}"><i class="fa fa-list"></i>
+                                                            <a href="{{route('distributor.payment', $distributors->distributor_id)}}">
+                                                                <i class="fa fa-list"></i>
+                                                                
+                                                            </a>
+                                                            <a href="{{route('distributor.outlet', $distributors->distributor_id)}}">
+                                                                <i class="fa fa-building"></i>
                                                                 
                                                             </a>
                                                         @endif

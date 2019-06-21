@@ -32,16 +32,25 @@ class CreditPaymentController extends Controller
                 "credit" => $credit,
             ]);
         }else{
-            $inv = WareHouseManagement::where('user_id', auth()->user()->user_id)->first();
-            $ware_house_id = $inv->ware_house_id;
-            
-            $cre =  CreditPayment::where([
-                'ware_house_id'=> $inv->ware_house_id]
-            )->orderBy('pay_id', 'desc')->get();
-            return view('administrator.credits.payment')->with([
-                "cre" => $cre,
-                "inv" => $inv,
-            ]);
+            $inve = WareHouseManagement::where([
+                'user_id'=> auth()->user()->user_id,
+            ])->exists();
+            if($inve){
+                $inv = WareHouseManagement::where('user_id', auth()->user()->user_id)->first();
+                $ware_house_id = $inv->ware_house_id;
+                
+                $cre =  CreditPayment::where([
+                    'ware_house_id'=> $inv->ware_house_id]
+                )->orderBy('pay_id', 'desc')->get();
+                return view('administrator.credits.payment')->with([
+                    "cre" => $cre,
+                    "inv" => $inv,
+                ]);
+            }else{
+                return redirect()->back()->with([
+                    'error' => " You Do Not Belong To Any Ware House",
+                ]);
+            }
         }
         
         

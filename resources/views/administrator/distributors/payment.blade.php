@@ -12,7 +12,7 @@
                             Distributor Payments</a></li>
                             <li class="breadcrumb-item"><a href="{{route('distributor.order', $pay->distributor_id)}}">
                                 Distributor Orders</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('distributor.order', $pay->distributor_id)}}">
+                            <li class="breadcrumb-item"><a href="{{route('distributor.outlet', $pay->distributor_id)}}">
                                     Distributor Outlets</a></li>
                         @endforeach
                         <li class="breadcrumb-item"><a href="{{route('distributor.create')}}">Add Distributor</a></li>
